@@ -1,8 +1,5 @@
 import requests
 import json
-import pandas as pd
-from geopy.geocoders import Nominatim
-import pycountry
 import os
 
 token = os.environ.get("AQICN_TOKEN")
