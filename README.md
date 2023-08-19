@@ -1,6 +1,6 @@
 # atta-data
 
-`data/ATTA.sqlite` is a database file which contains the following tables:
+`data/ATTA.sqlite` is a database file which contains the following tables for use in the React appplication:
 
 - aqicn_staging
 This is a staging evironment for the ETL process of loading data to aqicn
