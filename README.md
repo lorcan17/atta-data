@@ -1,41 +1,79 @@
-# atta-data
+# ATTA Data
 
-`data/ATTA.sqlite` is a database file which contains the following tables for use in the React appplication:
+The `data/ATTA.sqlite` database file contains several tables that are utilized by the React application. Below are the details of each table along with their fields:
 
-- aqicn_staging
+## aqicn Table
 
-This is a staging evironment for the ETL process of loading data to aqicn
+This is the main fact table that stores AQI (Air Quality Index) data. It contains the following fields:
 
-- aqicn
-This the main fact table where we store aqi, it contains the following fields:
-  - uid: unique station id
-  - lat: latitude
-  - lon: longitude
-  - aqi: aqi value
-  - station_name: The name of the station where the aqi was recorded
-  - recorded_at: the datetime when the aqi was recorded
-- station_dim
-This is a dimension table for more information about the station, it contains the following fields:
-  - uid: unique station id
-  - lat: latitude
-  - lon: longitude
-  - station_name: The name of the station where the aqi was recorded
-  - city: the city
-  - country: the country
-  - country_code2: the 2 letter country code
-- city_dim
-This is a dimension table which contains the file path of an image relevent to the city
-  - city
-  - country
-  - image_filepath
-- country_income_group
-  - economy:
-  - region:
-  - country_code2: the 2 letter country code
-  - country_code3: the 3 letter country code
-  - income_group:
-  - lending_category:
-- priority_cities
-This is a list of shortlisted cities to display initally on the map
-  - city
-  - country
+- `uid`: Unique station ID
+- `lat`: Latitude
+- `lon`: Longitude
+- `aqi`: AQI value
+- `station_name`: Name of the station where the AQI was recorded
+- `recorded_at`: Datetime when the AQI was recorded
+
+## station_dim Table
+
+This is a dimension table providing additional information about stations. It can be joined with the `aqicn` table using the `uid` field. It contains the following fields:
+
+- `uid`: Unique station ID
+- `lat`: Latitude
+- `lon`: Longitude
+- `station_name`: Name of the station
+- `city`: City where the station is located
+- `country`: Country where the station is located
+- `country_code2`: Two-letter country code
+
+## city_dim Table
+
+This dimension table holds image file paths related to cities. It includes the following fields:
+
+- `city`: City name
+- `country`: Country name
+- `image_filepath`: File path of the associated image
+- `auto_generated`: Flag indicating whether the image was auto-generated using the Unsplash API
+
+## country_income_group Table
+
+A dimension table providing income group and lending category information by country. You can join this table with `station_dim` using the `country_code2` field. It contains the following fields:
+
+- `economy`: Economy information
+- `region`: Region information
+- `country_code2`: Two-letter country code
+- `country_code3`: Three-letter country code
+- `income_group`: Income group category
+- `lending_category`: Lending category information
+
+## priority_cities Table
+
+This table lists shortlisted cities to be displayed initially on the map. It contains the following fields:
+
+- `city`: City name
+- `country`: Country name
+
+
+## Example queries
+
+The below query display how the tables in the database can be joined together.
+
+```sql
+SELECT 
+AQICN.UID,
+AQICN.LAT,
+AQICN.LON,
+AQICN.AQI,
+STATION_DIM.STATION_NAME,
+CITY_DIM.CITY,
+CITY_DIM.COUNTRY,
+CITY_DIM.IMAGE_FILEPATH,
+CITY_DIM.AUTO_GENERATED,
+COUNTRY_INCOME_GROUP.INCOME_GROUP,
+COUNTRY_INCOME_GROUP.LENDING_CATEGORY
+FROM AQICN
+LEFT JOIN STATION_DIM ON AQICN.UID = STATION_DIM.UID
+LEFT JOIN CITY_DIM ON STATION_DIM.CITY = CITY_DIM.CITY AND STATION_DIM.COUNTRY = CITY_DIM.COUNTRY
+LEFT JOIN COUNTRY_INCOME_GROUP ON STATION_DIM.COUNTRY_CODE2 = COUNTRY_INCOME_GROUP.COUNTRY_CODE2
+-- To filter for the top 25 pre-selected cities, uncommented the below
+--INNER JOIN PRIORITY_CITIES ON CITY_DIM.CITY = PRIORITY_CITIES.CITY AND CITY_DIM.COUNTRY = PRIORITY_CITIES.COUNTRY
+```
