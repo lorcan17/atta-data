@@ -4,6 +4,10 @@ The `data/ATTA.sqlite` database file contains several tables that are utilized b
 
 ## aqicn Table
 
+Datasources:
+
+- `https://aqicn.org/api/`
+
 This is the main fact table that stores AQI (Air Quality Index) data. It contains the following fields:
 
 - `uid`: Unique station ID
@@ -14,6 +18,11 @@ This is the main fact table that stores AQI (Air Quality Index) data. It contain
 - `recorded_at`: Datetime when the AQI was recorded
 
 ## station_dim Table
+
+Datasources:
+
+- `https://aqicn.org/api/`
+- `https://geopy.readthedocs.io/en/stable/#nominatim`
 
 This is a dimension table providing additional information about stations. It can be joined with the `aqicn` table using the `uid` field. It contains the following fields:
 
@@ -27,6 +36,10 @@ This is a dimension table providing additional information about stations. It ca
 
 ## city_dim Table
 
+Datasources:
+
+- `https://unsplash.com/developers`
+
 This dimension table holds image file paths related to cities. It includes the following fields:
 
 - `city`: City name
@@ -35,6 +48,10 @@ This dimension table holds image file paths related to cities. It includes the f
 - `auto_generated`: Flag indicating whether the image was auto-generated using the Unsplash API
 
 ## country_income_group Table
+
+Datasources:
+
+- `https://datatopics.worldbank.org/world-development-indicators/the-world-by-income-and-region.html`
 
 A dimension table providing income group and lending category information by country. You can join this table with `station_dim` using the `country_code2` field. It contains the following fields:
 
@@ -47,11 +64,14 @@ A dimension table providing income group and lending category information by cou
 
 ## priority_cities Table
 
+Datasources:
+
+- gsheet provided by UX Team which has been saved as `raw/priority_cities.csv`
+
 This table lists shortlisted cities to be displayed initially on the map. It contains the following fields:
 
 - `city`: City name
 - `country`: Country name
-
 
 ## Example queries
 
