@@ -22,7 +22,7 @@ for row in data:
     cursor.execute(insert_query, (
         row.get("city", None),
         row.get("country", None),
-        "images/Generic.jpg",
+        "images/_Generic.jpg",
         0,
         current_timestamp,
         current_timestamp
