@@ -6,7 +6,16 @@ import json
 connection = sqlite3.connect('data/atta.sqlite')
 cursor = connection.cursor()
 query = '''
-SELECT DISTINCT CITY, COUNTRY FROM STATION_DIM'''
+SELECT STATION_DIM.* FROM 
+    (SELECT DISTINCT CITY, COUNTRY FROM STATION_DIM) AS STATION_DIM
+LEFT JOIN 
+    CITY_DIM
+ON STATION_DIM.CITY = CITY_DIM.CITY
+AND STATION_DIM.COUNTRY = CITY_DIM.COUNTRY
+WHERE (
+    CITY_DIM.CITY IS NULL 
+    AND CITY_DIM.COUNTRY IS NULL
+    )'''
 # Fetch data from the database
 cursor.execute(query)
 data = cursor.fetchall()

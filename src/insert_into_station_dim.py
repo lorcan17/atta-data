@@ -1,6 +1,8 @@
 import sqlite3
 from datetime import datetime
 from geopy.geocoders import Nominatim
+import geopy.exc
+import sys
 
 # Initialize the geocoder
 geolocator = Nominatim(user_agent="geoapp")
@@ -34,6 +36,10 @@ cursor.execute('''SELECT aqicn.uid, aqicn.lat, aqicn.lon, aqicn.station_name FRO
     WHERE station_dim.uid IS NULL''')
 data = cursor.fetchall()
 
+# Print the number of records fetched
+num_records = len(data)
+print(f"{num_records} to insert into station_dim")
+
 # Process each record and insert/update in the target table
 for record in data:
     uid, lat, lon, station_name = record
@@ -41,8 +47,20 @@ for record in data:
     # Define current timestamps
     current_timestamp = datetime.now()
     # Get location information based on latitude and longitude
-    location = geolocator.reverse((lat, lon), exactly_one=True,  language='en')
-    
+    try:
+        location = geolocator.reverse((lat, lon), exactly_one=True, language='en')
+
+    except geopy.exc.GeocoderTimedOut:
+        print("Geocoding service timed out. Please try again later.")
+    except geopy.exc.GeocoderServiceError as e:
+        print("Geocoding service error:", e)
+    except geopy.exc.GeocoderUnavailable as e:
+        print("Geocoding service is currently unavailable:", e)
+        print("Exiting the application.")
+        sys.exit(1)  # Exit the script with an error status code
+    except Exception as e:
+        print("An error occurred:", e)
+
     if location:
         address = location.raw.get("address", {})
         city = address.get("city", None)

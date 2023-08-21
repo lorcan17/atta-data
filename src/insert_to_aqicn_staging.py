@@ -6,7 +6,7 @@ connection = sqlite3.connect('data/atta.sqlite')
 cursor = connection.cursor()
 
 
-with open('sample_offline_data.json', 'r') as json_file:
+with open('data/json/aqicn.json', 'r') as json_file:
     data = json.load(json_file)
     data = data["data"]
 

@@ -15,7 +15,10 @@ create_table = '''
     CREATE TABLE city_dim (
         city TEXT,
         country TEXT,
-        image_filepath TEXT
+        image_filepath TEXT,
+        auto_generated INTEGER,
+        etl_insert_ts DATETIME,
+        etl_update_ts DATETIME
     )
 '''
 cursor.execute(create_table)
@@ -24,4 +27,4 @@ cursor.execute(create_table)
 connection.commit()
 connection.close()
 
-print("Tables created.")
+print("Table city_dim created.")

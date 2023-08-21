@@ -3,8 +3,10 @@
 `data/ATTA.sqlite` is a database file which contains the following tables for use in the React appplication:
 
 - aqicn_staging
+
 This is a staging evironment for the ETL process of loading data to aqicn
--aqicn
+
+- aqicn
 This the main fact table where we store aqi, it contains the following fields:
   - uid: unique station id
   - lat: latitude
@@ -22,7 +24,7 @@ This is a dimension table for more information about the station, it contains th
   - country: the country
   - country_code2: the 2 letter country code
 - city_dim
-This is a dimensaion table which contains the file path of an image relevent to the city
+This is a dimension table which contains the file path of an image relevent to the city
   - city
   - country
   - image_filepath
