@@ -22,6 +22,10 @@ insert_update_query = '''
 cursor.execute('SELECT * FROM aqicn_staging')
 staging_data = cursor.fetchall()
 
+# Initialize counters
+rows_inserted = 0
+rows_updated = 0
+
 # Process each record and insert/update in the target table
 for record in staging_data:
     uid, lat, lon, aqi, station_name, recorded_at = record
@@ -29,13 +33,29 @@ for record in staging_data:
     # Define current timestamps
     current_timestamp = datetime.now()
     
+    # Get the current state of the row (whether it already exists)
+    cursor.execute("SELECT COUNT(*) FROM aqicn WHERE uid = ?", (uid,))
+    existing_row = cursor.fetchone()
+    
     # Insert/update record into target table
     cursor.execute(
         insert_update_query,
         (uid, lat, lon, aqi, station_name, recorded_at, current_timestamp, current_timestamp)
     )
+    
+    if existing_row[0] > 0:
+        rows_updated += 1
+    else:
+        rows_inserted += 1
 
+# Commit changes and close the connection
 connection.commit()
 connection.close()
 
+# Print the summary
 print("Data from staging inserted into aqicn with updates and timestamp columns.")
+print(f"Rows inserted: {rows_inserted}")
+print(f"Rows updated: {rows_updated}")
+
+
+

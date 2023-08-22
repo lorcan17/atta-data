@@ -4,12 +4,29 @@ from datetime import datetime
 
 
 
-with open('data/json/city_dim.json', 'r') as json_file:
-    data = json.load(json_file)
-
 # Connect to the database
-connection = sqlite3.connect('data/ATTA.sqlite')
+connection = sqlite3.connect('data/atta.sqlite')
 cursor = connection.cursor()
+query = '''
+SELECT STATION_DIM.* FROM 
+    (SELECT DISTINCT CITY, COUNTRY FROM STATION_DIM) AS STATION_DIM
+LEFT JOIN 
+    CITY_DIM
+ON (
+    (STATION_DIM.CITY = CITY_DIM.CITY OR (STATION_DIM.CITY IS NULL AND CITY_DIM.CITY IS NULL))
+    AND STATION_DIM.COUNTRY = CITY_DIM.COUNTRY)
+WHERE (
+    CITY_DIM.CITY IS NULL 
+    AND CITY_DIM.COUNTRY IS NULL
+    )'''
+# Fetch data from the database
+cursor.execute(query)
+data = cursor.fetchall()
+
+# Print the number of records fetched
+print(data)
+num_records = len(data)
+print(f"{num_records} to insert into city_dim")
 
 # Insert data into the table
 insert_query = '''
@@ -17,11 +34,12 @@ insert_query = '''
     VALUES (?, ?, ?, ?,?,?)
 '''
 
-for row in data:
+for record in data:
+    city, country = record
     current_timestamp = datetime.now()
     cursor.execute(insert_query, (
-        row.get("city", None),
-        row.get("country", None),
+        city,
+        country,
         "images/_Generic.jpg",
         0,
         current_timestamp,

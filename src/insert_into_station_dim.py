@@ -24,11 +24,6 @@ insert_update_query = '''
         country = excluded.country,
         etl_update_ts = excluded.etl_update_ts
 '''
-delete_staging_query = '''
-    DELETE FROM station_dim
-'''
-cursor.execute(delete_staging_query)
-
 
 # Fetch data from the staging table
 cursor.execute('''SELECT aqicn.uid, aqicn.lat, aqicn.lon, aqicn.station_name FROM aqicn
