@@ -1,0 +1,43 @@
+name: Run Scripts and Commit Changes
+
+on:
+  workflow_dispatch:  # This event allows manual triggering
+
+jobs:
+  run-scripts:
+    runs-on: ubuntu-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x  # Specify the Python version you need
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # If you have a requirements file
+
+      - name: Run scripts
+        run: |
+          python get_aqi.py
+          python insert_to_aqicn_staging.py
+          python insert_to_aqicn.py
+          python insert_into_station_dim.py
+          python insert_into_city_dim.py
+          python generate_city_images.py
+          python export_to_json_priority.py
+          python export_to_json.py
+
+      - name: Commit changes
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git add .
+          git commit -m "Run scripts and update data"
+          git push
+      - uses: stefanzweifel/git-auto-commit-action@v4
