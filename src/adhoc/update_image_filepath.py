@@ -5,8 +5,8 @@ connection = sqlite3.connect('data/atta.sqlite')
 cursor = connection.cursor()
 update_query = '''
 UPDATE CITY_DIM
-SET image_filepath = 'images\_Generic.jpg'
-WHERE auto_generated = 0
+SET image_filepath = 'images\_Generic.jpg', auto_generated = 0
+WHERE TRUE
 '''
 cursor.execute(update_query)
 connection.commit()

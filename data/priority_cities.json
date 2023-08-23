@@ -1,0 +1,152 @@
+[
+    {
+        "city": "Vancouver",
+        "country": "Canada",
+        "CITY_MATCH": "Vancouver",
+        "COUNTRY_MATCH": "Canada"
+    },
+    {
+        "city": "Montreal",
+        "country": "Canada",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "Toronto",
+        "country": "Canada",
+        "CITY_MATCH": "Toronto",
+        "COUNTRY_MATCH": "Canada"
+    },
+    {
+        "city": "Honolulu",
+        "country": "United States",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "New York",
+        "country": "United States",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "Los Angeles",
+        "country": "United States",
+        "CITY_MATCH": "Los Angeles",
+        "COUNTRY_MATCH": "United States"
+    },
+    {
+        "city": "Mexico City",
+        "country": "Mexico",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "Dubai International Airport",
+        "country": "United Arab Emirates",
+        "CITY_MATCH": "Dubai International Airport",
+        "COUNTRY_MATCH": "United Arab Emirates"
+    },
+    {
+        "city": "Tehran",
+        "country": "Iran",
+        "CITY_MATCH": "Tehran",
+        "COUNTRY_MATCH": "Iran"
+    },
+    {
+        "city": "Johannesburg",
+        "country": "South Africa",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "N'Djamena",
+        "country": "Chad",
+        "CITY_MATCH": "N'Djamena",
+        "COUNTRY_MATCH": "Chad"
+    },
+    {
+        "city": "Abuja",
+        "country": "Nigeria",
+        "CITY_MATCH": "Abuja",
+        "COUNTRY_MATCH": "Nigeria"
+    },
+    {
+        "city": "Lahore",
+        "country": "Pakistan",
+        "CITY_MATCH": "Lahore",
+        "COUNTRY_MATCH": "Pakistan"
+    },
+    {
+        "city": "Delhi",
+        "country": "India",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "Special Capital Region of Jakarta",
+        "country": "Indonesia",
+        "CITY_MATCH": "Special Capital Region of Jakarta",
+        "COUNTRY_MATCH": "Indonesia"
+    },
+    {
+        "city": "Beijing",
+        "country": "China",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "Hotan",
+        "country": "China",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "La Paz",
+        "country": "Bolivia",
+        "CITY_MATCH": "La Paz",
+        "COUNTRY_MATCH": "Bolivia"
+    },
+    {
+        "city": "Santiago",
+        "country": "Chile",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "Rio",
+        "country": "Brazil",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "Paris",
+        "country": "France",
+        "CITY_MATCH": "Paris",
+        "COUNTRY_MATCH": "France"
+    },
+    {
+        "city": "Zurich",
+        "country": "Switzerland",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "Tampere",
+        "country": "Finland",
+        "CITY_MATCH": "Tampere",
+        "COUNTRY_MATCH": "Finland"
+    },
+    {
+        "city": "Wellington",
+        "country": "New Zealand",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    },
+    {
+        "city": "Perth",
+        "country": "Australia",
+        "CITY_MATCH": null,
+        "COUNTRY_MATCH": null
+    }
+]
