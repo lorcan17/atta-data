@@ -24,7 +24,7 @@ cursor.execute(query)
 data = cursor.fetchall()
 
 # Print the number of records fetched
-print(data)
+#print(data)
 num_records = len(data)
 print(f"{num_records} to insert into city_dim")
 
@@ -40,7 +40,7 @@ for record in data:
     cursor.execute(insert_query, (
         city,
         country,
-        "images/_Generic.jpg",
+        "images\_Generic.jpg",
         0,
         current_timestamp,
         current_timestamp

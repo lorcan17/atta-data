@@ -1,6 +1,27 @@
 import sqlite3
 import os
 import requests
+import re
+
+def sanitize_filename(filename):
+    # Remove invalid characters
+    sanitized_filename = re.sub(r'[\/:*?"<>|]', '_', filename)
+    
+    # Remove leading/trailing spaces
+    sanitized_filename = sanitized_filename.strip()
+    
+    # Replace spaces with underscores
+    sanitized_filename = sanitized_filename.replace(' ', '_')
+    
+    # Limit length (adjust to your target filesystem's limit)
+    max_filename_length = 255
+    sanitized_filename = sanitized_filename[:max_filename_length]
+    
+    # Convert to lowercase (adjust as needed)
+    sanitized_filename = sanitized_filename.lower()
+    
+    return sanitized_filename
+
 
 access_key = os.environ.get("UNSPLASH_ACCESS_KEY")
 
@@ -32,6 +53,7 @@ for city, country in city_country_combinations:
         search_query = f"{country}"
         filename = f"{country}.jpg"
     
+    filename = sanitize_filename(filename)
     filepath = os.path.join('images', filename)
     
     url = f"https://api.unsplash.com/search/photos/?query={search_query}&client_id={access_key}"
@@ -71,3 +93,4 @@ for city, country in city_country_combinations:
         
     else: 
         print(f"No image found for {city}, {country}")
+
