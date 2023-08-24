@@ -28,14 +28,15 @@ jobs:
 
       - name: Run scripts
         run: |
-          python srcget_aqi.py
-          python srcinsert_to_aqicn_staging.py
-          python srcinsert_to_aqicn.py
-          python srcinsert_into_station_dim.py
-          python srcinsert_into_city_dim.py
-          python srcgenerate_city_images.py
-          python srcexport_to_json_priority.py
-          python srcexport_to_json.py  
+          cd src
+          python get_aqi.py
+          python insert_to_aqicn_staging.py
+          python insert_to_aqicn.py
+          python insert_into_station_dim.py
+          python insert_into_city_dim.py
+          python generate_city_images.py
+          python export_to_json_priority.py
+          python export_to_json.py  
       - name: Commit changes
         run: |
           git config --global user.email "you@example.com"
