@@ -3,6 +3,10 @@ name: Run Scripts and Commit Changes
 on:
   workflow_dispatch:  # This event allows manual triggering
 
+env:
+  AQICN_TOKEN: '${{ secrets.AQICN_TOKEN }}'
+  UNSPLASH_ACCESS_KEY: '${{ secrets.UNSPLASH_ACCESS_KEY }}''
+
 jobs:
   run-scripts:
     runs-on: ubuntu-latest
@@ -24,14 +28,14 @@ jobs:
 
       - name: Run scripts
         run: |
-          python src/get_aqi.py
-          python src/insert_to_aqicn_staging.py
-          python src/insert_to_aqicn.py
-          python src/insert_into_station_dim.py
-          python src/insert_into_city_dim.py
-          python src/generate_city_images.py
-          python src/export_to_json_priority.py
-          python src/export_to_json.py/
+          python srcget_aqi.py
+          python srcinsert_to_aqicn_staging.py
+          python srcinsert_to_aqicn.py
+          python srcinsert_into_station_dim.py
+          python srcinsert_into_city_dim.py
+          python srcgenerate_city_images.py
+          python srcexport_to_json_priority.py
+          python srcexport_to_json.py  
       - name: Commit changes
         run: |
           git config --global user.email "you@example.com"
