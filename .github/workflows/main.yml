@@ -5,7 +5,7 @@ on:
 
 env:
   AQICN_TOKEN: '${{ secrets.AQICN_TOKEN }}'
-  UNSPLASH_ACCESS_KEY: '${{ secrets.UNSPLASH_ACCESS_KEY }}''
+  UNSPLASH_ACCESS_KEY: '${{ secrets.UNSPLASH_ACCESS_KEY }}'
 
 jobs:
   run-scripts:
