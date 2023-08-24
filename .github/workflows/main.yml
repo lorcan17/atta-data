@@ -26,21 +26,27 @@ jobs:
         run: |
           pip install -r requirements.txt  # If you have a requirements file
 
-      - name: Run scripts
-        run: |
-          python src/get_aqi.py
-          python src/insert_to_aqicn_staging.py
-          python src/insert_to_aqicn.py
-          python src/insert_into_station_dim.py
-          python src/insert_into_city_dim.py
-          python src/generate_city_images.py
-          python src/export_to_json_priority.py
-          python src/export_to_json.py  
-      - name: Commit changes
-        run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-          git add .
-          git commit -m "Run scripts and update data"
-          git push
+      - name: Run get_aqi.py
+        run: python src/get_aqi.py
+
+      - name: Run insert_to_aqicn_staging.py
+        run: python src/insert_to_aqicn_staging.py
+
+      - name: Run insert_to_aqicn.py
+        run: python src/insert_to_aqicn.py
+
+      - name: Run insert_into_station_dim.py
+        run: python src/insert_into_station_dim.py
+
+      - name: Run insert_into_city_dim.py
+        run: python src/insert_into_city_dim.py
+
+      - name: Run generate_city_images.py
+        run: python src/generate_city_images.py
+
+      - name: Run export_to_json_priority.py
+        run: python src/export_to_json_priority.py
+
+      - name: Run export_to_json.py
+        run: python src/export_to_json.py
       - uses: stefanzweifel/git-auto-commit-action@v4
