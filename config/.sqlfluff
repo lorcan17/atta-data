@@ -1,0 +1,21 @@
+[sqlfluff]
+# Set either to 0 to disable.
+large_file_skip_char_limit = 0
+large_file_skip_byte_limit = 0
+warnings = L012, L016, L031, L034, L051 
+
+[sqlfluff:rules:L010]
+# Keywords
+capitalisation_policy = upper
+
+[sqlfluff:rules:L014]
+# Unquoted identifiers
+extended_capitalisation_policy = upper
+
+[sqlfluff:rules:L030]
+# Function names
+extended_capitalisation_policy = upper
+
+[sqlfluff:rules:L063]
+# Data Types
+extended_capitalisation_policy = upper
