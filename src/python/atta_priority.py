@@ -8,7 +8,7 @@ service_account_key_path = "config\gcloud_service_account.json"
 client = bigquery.Client.from_service_account_json(service_account_key_path)
 
 # Define the SQL query (BigQuery SQL dialect)
-sql_file_path = "src/sql/export/atta_priority.sql"
+sql_file_path = "./src/sql/export/atta_priority.sql"
 
 # Read the SQL query from the file
 with open(sql_file_path, 'r') as sql_file:
@@ -24,7 +24,7 @@ results = query_job.result()
 result_dicts = [dict(row) for row in results]
 
 # Define the output JSON file name
-output_file = 'data/atta2.json'
+output_file = './data/atta_priority.json'
 
 # Write the results to the JSON file
 with open(output_file, 'w') as json_file:

@@ -2,13 +2,13 @@ from google.cloud import bigquery
 import json
 
 # Path to your service account JSON key file
-service_account_key_path = "config\gcloud_service_account.json"
+service_account_key_path = "./config/gcloud_service_account.json"
 
 # Create a BigQuery client with the service account
 client = bigquery.Client.from_service_account_json(service_account_key_path)
 
 # Define the SQL query (BigQuery SQL dialect)
-sql_file_path = "src/sql/export/atta.sql"
+sql_file_path = "./src/sql/export/atta.sql"
 
 # Read the SQL query from the file
 with open(sql_file_path, 'r') as sql_file:
@@ -24,7 +24,7 @@ results = query_job.result()
 result_dicts = [dict(row) for row in results]
 
 # Define the output JSON file name
-output_file = 'data/atta.json'
+output_file = './data/atta.json'
 
 # Write the results to the JSON file
 with open(output_file, 'w') as json_file:

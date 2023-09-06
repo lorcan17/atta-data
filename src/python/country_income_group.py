@@ -7,7 +7,7 @@ import json
 from google.cloud import bigquery
 
 # Read the Excel file into a DataFrame
-excel_file_path = "data/raw/CLASS.xlsx"  # Update with the actual path
+excel_file_path = "./data/raw/CLASS.xlsx"  # Update with the actual path
 sheet_name = "List of economies"
 df = pd.read_excel(excel_file_path, sheet_name=sheet_name)
 
@@ -37,7 +37,7 @@ for index, row in df.iterrows():
         print("Invalid 3-letter code")
 
 
-service_account_key_path = "config\gcloud_service_account.json"
+service_account_key_path = "./config/gcloud_service_account.json"
 
 # Create a BigQuery client with the service account
 client = bigquery.Client.from_service_account_json(service_account_key_path)

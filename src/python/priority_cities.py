@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import datetime
 
 # Read the csv file into a DataFrame
-file_path = "data/raw/priority_cities.csv"  # Update with the actual path
+file_path = "./data/raw/priority_cities.csv"  # Update with the actual path
 sheet_name = "List of economies"
 df = pd.read_csv(file_path)
 
@@ -14,7 +14,7 @@ df["etl_insert_ts"] =  current_timestamp
 df["etl_update_ts"] =  current_timestamp
 
 # Path to your service account JSON key file
-service_account_key_path = "config\gcloud_service_account.json"
+service_account_key_path = "./config/gcloud_service_account.json"
 
 # Create a BigQuery client with the service account
 client = bigquery.Client.from_service_account_json(service_account_key_path)
