@@ -31,15 +31,6 @@ jobs:
         run: src/bash/decrypt.sh
         env:
             ENCRYPT_KEY: ${{ secrets.ENCRYPT_KEY }}
-            
-      - name: List Files in Destination Path
-        run: |
-          destination_path="./config"  # Specify the directory you want to list files from
-          ls "$destination_path"
-      - name: List Files in parent Path
-        run: |
-          destination_path="./"  # Specify the directory you want to list files from
-          ls "$destination_path"
       - name: aqicn_staging load
         run: python src/python/aqi_staging.py
 
@@ -53,7 +44,7 @@ jobs:
         run: python src/python/city_dim.py
 
       - name: export atta.json
-        run: python src/atta.py
+        run: python src/python/atta.py
 
       - name: export atta_priority.json
         run: python src/python/atta_priority.py
