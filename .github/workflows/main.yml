@@ -31,7 +31,15 @@ jobs:
         run: src/bash/decrypt.sh
         env:
             ENCRYPT_KEY: ${{ secrets.ENCRYPT_KEY }}
-          
+        working-directory: ./config
+      - name: List Files in Destination Path
+        run: |
+          destination_path="./config"  # Specify the directory you want to list files from
+          ls "$destination_path"
+      - name: List Files in parent Path
+        run: |
+          destination_path="./"  # Specify the directory you want to list files from
+          ls "$destination_path"
       - name: aqicn_staging load
         run: python src/python/aqi_staging.py
 
