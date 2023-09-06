@@ -6,6 +6,7 @@ on:
 env:
   AQICN_TOKEN: '${{ secrets.AQICN_TOKEN }}'
   UNSPLASH_ACCESS_KEY: '${{ secrets.UNSPLASH_ACCESS_KEY }}'
+  ENCRYPT_KEY: '${{ secrets.ENCRYPT_KEY }}'
 
 jobs:
   run-scripts:
@@ -25,6 +26,11 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt  # If you have a requirements file
+          
+      - name: Decrypt large secret
+        run: ./src/bash/decrypt_secret.sh
+        env:
+            ENCRYPT_KEY: ${{ secrets.ENCRYPT_KEY }}
           
       - name: aqicn_staging load
         run: python src/python/aqi_staging.py
