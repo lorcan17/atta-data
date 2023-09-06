@@ -26,21 +26,21 @@ jobs:
         run: |
           pip install -r requirements.txt  # If you have a requirements file
       - name: aqicn_staging load
-        run: python src\python\aqi_staging.py.py
+        run: python src/python/aqi_staging.py.py
 
       - name: aqicn load
-        run: python src\python\aqi.py
+        run: python src/python/aqi.py
 
       - name: station_dim load
-        run: python src\python\station_dim.py
+        run: python src/python/station_dim.py
 
       - name: city_dim load
-        run: python src\python\city_dim.py
+        run: python src/python/city_dim.py
 
       - name: export atta.json
-        run: python src\atta.py
+        run: python src/atta.py
 
       - name: export atta_priority.json
-        run: ppython src\python\atta_priority.py
+        run: python src/python/atta_priority.py
 
       - uses: stefanzweifel/git-auto-commit-action@v4
