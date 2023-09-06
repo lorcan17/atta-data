@@ -3,7 +3,7 @@ from google.cloud import bigquery
 from utils.aqicn import aqicn
 
 # Path to your service account JSON key file
-service_account_key_path = "config\gcloud_service_account.json"
+service_account_key_path = "./config/gcloud_service_account.json"
 
 # Create a BigQuery client with the service account
 client = bigquery.Client.from_service_account_json(service_account_key_path)
