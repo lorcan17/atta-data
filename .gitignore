@@ -2,3 +2,4 @@ gcloud_service_account.json
 key.key
 ignore/
 .vscode/
+.pyc
