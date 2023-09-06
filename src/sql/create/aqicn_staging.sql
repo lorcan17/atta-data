@@ -1,11 +1,14 @@
-CREATE OR REPLACE TABLE your_project_id.your_dataset_id.aqicn_staging (
-    uid INT64 PRIMARY KEY,
+CREATE TABLE air-quality-379023.staging.aqicn_staging (
+    uid INT64,
     lat FLOAT64,
     lon FLOAT64,
     aqi INT64,
-    station_name STRING,
-    recorded_at TIMESTAMP
+    station STRUCT<
+        name STRING,
+        time TIMESTAMP
+    >
 )
-OPTIONS(
-    expiration_timestamp = TIMESTAMP_ADD(CURRENT_TIMESTAMP(), INTERVAL 100 YEAR)
+OPTIONS (
+    expiration_timestamp = "2999-12-31" -- Set a large expiration time
+
 );

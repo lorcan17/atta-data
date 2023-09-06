@@ -1,4 +1,4 @@
-CREATE OR REPLACE TABLE your_project_id.your_dataset_id.city_dim (
+CREATE TABLE air-quality-379023.atta.city_dim (
     city STRING,
     country STRING,
     image_filepath STRING,
@@ -6,6 +6,6 @@ CREATE OR REPLACE TABLE your_project_id.your_dataset_id.city_dim (
     etl_insert_ts TIMESTAMP,
     etl_update_ts TIMESTAMP
 )
-OPTIONS(
-    expiration_timestamp = TIMESTAMP_ADD(CURRENT_TIMESTAMP(), INTERVAL 100 YEAR)
+OPTIONS (
+    expiration_timestamp = "2999-12-31" -- Set a large expiration time
 );

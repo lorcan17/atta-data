@@ -1,5 +1,5 @@
-CREATE OR REPLACE TABLE your_project_id.your_dataset_id.aqicn (
-    uid INT64 PRIMARY KEY,
+CREATE OR REPLACE TABLE air-quality-379023.atta.aqicn (
+    uid INT64,
     lat FLOAT64,
     lon FLOAT64,
     aqi INT64,
@@ -9,5 +9,5 @@ CREATE OR REPLACE TABLE your_project_id.your_dataset_id.aqicn (
     etl_update_ts TIMESTAMP
 )
 OPTIONS (
-    expiration_timestamp = TIMESTAMP_ADD(CURRENT_TIMESTAMP(), INTERVAL 100 YEAR)
+    expiration_timestamp = "2999-12-31" -- Set a large expiration time
 );

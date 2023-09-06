@@ -1,4 +1,4 @@
-CREATE OR REPLACE TABLE your_project_id.your_dataset_id.country_income_group (
+CREATE TABLE air-quality-379023.atta.country_income_group (
     economy STRING,
     region STRING,
     country_code2 STRING,
@@ -9,5 +9,5 @@ CREATE OR REPLACE TABLE your_project_id.your_dataset_id.country_income_group (
     etl_update_ts TIMESTAMP
 )
 OPTIONS (
-    expiration_timestamp = TIMESTAMP_ADD(CURRENT_TIMESTAMP(), INTERVAL 100 YEAR)
+    expiration_timestamp = "2999-12-31" -- Set a large expiration time
 );
