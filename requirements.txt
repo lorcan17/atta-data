@@ -2,6 +2,3 @@ geopy
 requests
 google-cloud-bigquery
 pycountry
-pandas
-openpyxl
-pyarrow
