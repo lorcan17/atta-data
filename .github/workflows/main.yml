@@ -28,7 +28,7 @@ jobs:
           pip install -r requirements.txt  # If you have a requirements file
 
       - name: Decrypt large secret
-        run: ./src/bash/decrypt.sh
+        run: src/bash/decrypt.sh
         env:
             ENCRYPT_KEY: ${{ secrets.ENCRYPT_KEY }}
           
