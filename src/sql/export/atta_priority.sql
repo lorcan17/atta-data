@@ -12,7 +12,7 @@ WITH ranked_stations AS (
         city_dim.auto_generated,
         country_income_group.income_group,
         country_income_group.lending_category,
-        RANK() OVER (PARTITION BY city_dim.city, city_dim.country ORDER BY aqicn.aqi DESC) AS station_rank
+        RANK() OVER (PARTITION BY city_dim.city, city_dim.country ORDER BY aqicn.recorded_at DESC) AS station_rank
     FROM air-quality-379023.atta.aqicn AS aqicn
     LEFT JOIN
         air-quality-379023.atta.station_dim AS station_dim
