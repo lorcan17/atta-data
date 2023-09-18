@@ -64,16 +64,19 @@ for row in rows:
         enriched_row = (uid, lat, lon, country_code2, station_name, city, country,\
                         current_timestamp, current_timestamp)            
         enriched_data.append(enriched_row)
-    
-table_ref = client.dataset('atta').table('station_dim')
-table = client.get_table(table_ref)
-errors = client.insert_rows(table, enriched_data)
 
-if not errors:
+
+if len(enriched_data) != 0:
+     
+    table_ref = client.dataset('atta').table('station_dim')
+    table = client.get_table(table_ref)
+    errors = client.insert_rows(table, enriched_data)
+
+    if not errors:
         print("Row inserted successfully.")
-else:
+    else:
         print(f"Error inserting row: {errors}")
 
-
-
-print("Data inserted into station_dim")
+    print("Data inserted into station_dim")
+else: 
+    print("No rows to insert") 

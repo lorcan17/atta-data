@@ -38,12 +38,18 @@ for row in rows:
     enriched_row = (city, country,  "images\_Generic.jpg",\
                         auto_generated, current_timestamp, current_timestamp)
     enriched_data.append(enriched_row)
-    
-table_ref = client.dataset('atta').table('city_dim')
-table = client.get_table(table_ref)
-errors = client.insert_rows(table, enriched_data)
 
-if not errors:
+if len(enriched_data) != 0:
+     
+    table_ref = client.dataset('atta').table('city_dim')
+    table = client.get_table(table_ref)
+    errors = client.insert_rows(table, enriched_data)
+
+    if not errors:
         print("Row inserted successfully.")
-else:
+    else:
         print(f"Error inserting row: {errors}")
+
+    print("Data inserted into city_dim")
+else: 
+    print("No rows to insert") 
