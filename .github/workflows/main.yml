@@ -1,8 +1,7 @@
 name: Run Scripts and Commit Changes
 
 on:
-  schedule:
-    - cron: "0 */2 * * *"
+  workflow_dispatch:
 
 env:
   AQICN_TOKEN: '${{ secrets.AQICN_TOKEN }}'
